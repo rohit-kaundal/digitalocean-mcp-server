@@ -228,6 +228,53 @@
             color: #ffffff;
         }
 
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: rgba(255, 0, 128, 0.1);
+            color: #ff0080;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #ff0080;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3), inset 0 0 20px rgba(255, 0, 128, 0.1);
+        }
+
+        .cta-button-secondary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button-secondary:hover:before {
+            left: 100%;
+        }
+
+        .cta-button-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.5), inset 0 0 30px rgba(255, 0, 128, 0.2);
+            border-color: #00ffff;
+            color: #ffffff;
+            background: rgba(255, 0, 128, 0.2);
+        }
+
         .section {
             padding: 5rem 2rem;
             max-width: 1200px;
@@ -449,6 +496,11 @@
                 font-size: 1.1rem;
             }
 
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
             .section {
                 padding: 3rem 1rem;
             }
@@ -575,7 +627,10 @@
             <div class="hero-content">
                 <h1 class="glow">DigitalOcean MCP Server</h1>
                 <p>AI-powered Model Context Protocol server for seamless DigitalOcean cloud management. Control droplets, Kubernetes clusters, and container registries through intelligent automation.</p>
-                <a href="#setup" class="cta-button pulse">Get Started</a>
+                <div class="cta-buttons">
+                    <a href="#setup" class="cta-button pulse">Get Started</a>
+                    <a href="https://github.com/rohit-kaundal/digitalocean-mcp-server" class="cta-button-secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                </div>
             </div>
         </section>
 
@@ -717,7 +772,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="https://github.com/your-repo/digitalocean-mcp-server">GitHub</a>
+                <a href="https://github.com/rohit-kaundal/digitalocean-mcp-server" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.digitalocean.com/docs/api/">DigitalOcean API</a>
                 <a href="https://modelcontextprotocol.io/">MCP Protocol</a>
                 <a href="#docs">Documentation</a>
