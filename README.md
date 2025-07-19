@@ -1,13 +1,18 @@
 # DigitalOcean MCP Server
 
-A Model Context Protocol (MCP) server that provides programmatic access to DigitalOcean's API. This server exposes tools for managing droplets, Kubernetes clusters, and container registries through the MCP interface.
+A comprehensive Model Context Protocol (MCP) server that provides programmatic access to DigitalOcean's API. This server exposes **37 tools** across **6 major service categories** for complete infrastructure management through the MCP interface.
 
 ## Features
 
-- **Droplet Management**: Create, list, get, and delete DigitalOcean droplets
-- **Kubernetes Operations**: Manage DigitalOcean Kubernetes clusters
-- **Container Registry**: Access and manage DigitalOcean container registries
-- **Connection Testing**: Verify API connectivity and authentication
+- **🖥️ Droplet Management**: Complete lifecycle management with resize and snapshot capabilities
+- **💾 Volume Management**: Block storage operations including attach/detach and snapshots
+- **📸 Snapshot Operations**: Backup and restore functionality for droplets and volumes
+- **🖼️ Image Management**: Custom image operations, transfers, and conversions
+- **🌐 Floating IP Management**: Static IP allocation, assignment, and management
+- **⚖️ Load Balancer Operations**: Traffic distribution with full CRUD operations
+- **☸️ Kubernetes Operations**: Comprehensive cluster and node pool management
+- **📦 Container Registry**: Access and manage DigitalOcean container registries
+- **✅ Connection Testing**: Verify API connectivity and authentication
 
 ## Prerequisites
 
@@ -75,43 +80,85 @@ go run main.go
 
 The server will start and listen for MCP requests via stdio transport.
 
-### Available Tools
+### Available Tools (37 Total)
 
-#### Droplet Management
-
+#### Connection & Testing
 - **`test_connection`** - Test API connectivity and authentication
-- **`list_droplets`** - List all droplets in your account
-- **`get_droplet`** - Get details of a specific droplet
-  - Parameters: `droplet_id` (integer)
-- **`create_droplet`** - Create a new droplet
-  - Parameters: `name` (string), `region` (string), `size` (string), `image` (string)
-- **`delete_droplet`** - Delete a droplet
-  - Parameters: `droplet_id` (integer)
 
-#### Kubernetes Clusters
+#### Droplet Management (7 tools)
+- **`list_droplets`** - List all droplets with pagination support
+- **`get_droplet`** - Get detailed information about a specific droplet
+- **`create_droplet`** - Create a new droplet with custom specifications
+- **`delete_droplet`** - Permanently delete a droplet
+- **`resize_droplet`** - Resize droplet to different size (CPU/RAM/disk)
+- **`create_droplet_snapshot`** - Create a snapshot backup of a droplet
 
+#### Volume Management (8 tools)
+- **`list_volumes`** - List all block storage volumes (optionally by region)
+- **`get_volume`** - Get detailed volume information
+- **`create_volume`** - Create new block storage volume
+- **`delete_volume`** - Delete a volume
+- **`attach_volume`** - Attach volume to a droplet
+- **`detach_volume`** - Detach volume from a droplet
+- **`resize_volume`** - Expand volume storage capacity
+- **`create_volume_snapshot`** - Create snapshot backup of a volume
+
+#### Snapshot Operations (6 tools)
+- **`list_snapshots`** - List all snapshots (filter by droplet/volume)
+- **`list_volume_snapshots`** - List volume-specific snapshots
+- **`list_droplet_snapshots`** - List droplet-specific snapshots
+- **`get_snapshot`** - Get detailed snapshot information
+- **`delete_snapshot`** - Delete a snapshot
+
+#### Image Management (6 tools)
+- **`list_images`** - List available images (distribution/application/user)
+- **`get_image`** - Get image details by ID or slug
+- **`update_image`** - Update image metadata (name, description)
+- **`delete_image`** - Delete custom images
+- **`transfer_image`** - Transfer image to different region
+- **`convert_image_to_snapshot`** - Convert image to snapshot format
+
+#### Floating IP Management (6 tools)
+- **`list_floating_ips`** - List all floating IP addresses
+- **`get_floating_ip`** - Get floating IP details and assignment status
+- **`create_floating_ip`** - Create new floating IP (regional or assigned)
+- **`delete_floating_ip`** - Release floating IP
+- **`assign_floating_ip`** - Assign floating IP to droplet
+- **`unassign_floating_ip`** - Unassign floating IP from droplet
+
+#### Load Balancer Operations (9 tools)
+- **`list_load_balancers`** - List all load balancers
+- **`get_load_balancer`** - Get load balancer configuration and status
+- **`create_load_balancer`** - Create new load balancer with forwarding rules
+- **`update_load_balancer`** - Update load balancer configuration
+- **`delete_load_balancer`** - Delete load balancer
+- **`add_droplets_to_load_balancer`** - Add droplets to load balancer pool
+- **`remove_droplets_from_load_balancer`** - Remove droplets from pool
+- **`add_forwarding_rules_to_load_balancer`** - Add traffic forwarding rules
+- **`remove_forwarding_rules_from_load_balancer`** - Remove forwarding rules
+
+#### Kubernetes Clusters (4 tools)
 - **`list_k8s_clusters`** - List all Kubernetes clusters
-- **`get_k8s_cluster`** - Get details of a specific cluster
-  - Parameters: `cluster_id` (string)
-- **`create_k8s_cluster`** - Create a new Kubernetes cluster
-  - Parameters: `name` (string), `region` (string), `version` (string), `node_pools` (array)
-- **`delete_k8s_cluster`** - Delete a Kubernetes cluster
-  - Parameters: `cluster_id` (string)
+- **`get_k8s_cluster`** - Get cluster details and status
+- **`create_k8s_cluster`** - Create new Kubernetes cluster
+- **`delete_k8s_cluster`** - Delete Kubernetes cluster
 
-#### Container Registry
-
+#### Container Registry (2 tools)
 - **`list_registries`** - List all container registries
-- **`get_registry`** - Get details of a specific registry
-  - Parameters: `registry_name` (string)
+- **`get_registry`** - Get registry details and repositories
 
 ### Example MCP Client Usage
 
+#### Basic Operations
 ```json
 {
   "method": "tools/call",
   "params": {
     "name": "list_droplets",
-    "arguments": {}
+    "arguments": {
+      "page": 1,
+      "per_page": 25
+    }
   }
 }
 ```
@@ -125,7 +172,86 @@ The server will start and listen for MCP requests via stdio transport.
       "name": "my-server",
       "region": "nyc3",
       "size": "s-1vcpu-1gb",
-      "image": "ubuntu-20-04-x64"
+      "image": "ubuntu-22-04-x64"
+    }
+  }
+}
+```
+
+#### Volume Management
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_volume",
+    "arguments": {
+      "name": "my-storage",
+      "region": "nyc3",
+      "size_gigabytes": 100,
+      "description": "Additional storage for applications"
+    }
+  }
+}
+```
+
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "attach_volume",
+    "arguments": {
+      "volume_id": "volume-123",
+      "droplet_id": 456
+    }
+  }
+}
+```
+
+#### Load Balancer Setup
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_load_balancer",
+    "arguments": {
+      "name": "web-lb",
+      "algorithm": "round_robin",
+      "region": "nyc3",
+      "forwarding_rules": [
+        {
+          "entry_protocol": "http",
+          "entry_port": 80,
+          "target_protocol": "http",
+          "target_port": 8080
+        }
+      ],
+      "droplet_ids": [123, 456]
+    }
+  }
+}
+```
+
+#### Floating IP Management
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_floating_ip",
+    "arguments": {
+      "region": "nyc3"
+    }
+  }
+}
+```
+
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "assign_floating_ip",
+    "arguments": {
+      "ip": "192.168.1.100",
+      "droplet_id": 123
     }
   }
 }
@@ -146,6 +272,11 @@ digitalocean-mcp-server/
 ├── handlers/
 │   ├── common.go          # Shared handler functionality
 │   ├── droplets.go        # Droplet operations
+│   ├── volumes.go         # Volume operations
+│   ├── snapshots.go       # Snapshot operations
+│   ├── images.go          # Image operations
+│   ├── floating_ips.go    # Floating IP operations
+│   ├── load_balancers.go  # Load balancer operations
 │   ├── kubernetes.go      # Kubernetes operations
 │   └── registry.go        # Registry operations
 ├── types/
@@ -212,9 +343,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Changelog
 
+### v2.0.0
+- **MAJOR EXPANSION**: Added 30+ new API tools across 5 additional service categories
+- **Volume Management**: Complete block storage lifecycle (8 tools)
+- **Snapshot Operations**: Backup and restore functionality (6 tools)
+- **Image Management**: Custom image operations and transfers (6 tools)
+- **Floating IP Management**: Static IP allocation and assignment (6 tools)
+- **Load Balancer Operations**: Traffic distribution with full CRUD (9 tools)
+- **Enhanced Droplets**: Added resize and snapshot capabilities
+- **Comprehensive Documentation**: Updated with detailed API coverage
+- **Improved Architecture**: Modular handler design for scalability
+
 ### v1.0.0
 - Initial release
-- Droplet management tools
-- Kubernetes cluster tools  
-- Container registry tools
+- Droplet management tools (5 tools)
+- Kubernetes cluster tools (4 tools)
+- Container registry tools (2 tools)
 - Connection testing
