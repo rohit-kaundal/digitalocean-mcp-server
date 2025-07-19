@@ -626,7 +626,7 @@
         <section id="home" class="hero">
             <div class="hero-content">
                 <h1 class="glow">DigitalOcean MCP Server</h1>
-                <p>AI-powered Model Context Protocol server for seamless DigitalOcean cloud management. Control droplets, Kubernetes clusters, and container registries through intelligent automation.</p>
+                <p>Comprehensive AI-powered Model Context Protocol server with 37 tools across 6 service categories. Complete DigitalOcean infrastructure management through intelligent automation.</p>
                 <div class="cta-buttons">
                     <a href="#setup" class="cta-button pulse">Get Started</a>
                     <a href="https://github.com/rohit-kaundal/digitalocean-mcp-server" class="cta-button-secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
@@ -635,65 +635,239 @@
         </section>
 
         <section id="features" class="section">
-            <h2>🚀 AI-Powered Cloud Management</h2>
+            <h2>🚀 Comprehensive Cloud Management (37 Tools)</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">☁️</div>
-                    <h3>Droplet Management</h3>
-                    <p>Create, list, monitor, and manage DigitalOcean droplets with AI-assisted operations. Full CRUD operations with intelligent error handling and status monitoring.</p>
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Droplet Management (7 tools)</h3>
+                    <p>Complete lifecycle management including create, list, resize, delete, and snapshot operations. Full CRUD with intelligent error handling and status monitoring.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Kubernetes Integration</h3>
-                    <p>Seamlessly manage Kubernetes clusters through MCP protocol. Deploy, scale, and monitor your containerized applications with AI-driven insights.</p>
+                    <div class="feature-icon">💾</div>
+                    <h3>Volume Management (8 tools)</h3>
+                    <p>Block storage operations including attach/detach, resize, and snapshot functionality. Complete volume lifecycle management with automated backup capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Snapshot Operations (6 tools)</h3>
+                    <p>Backup and restore functionality for both droplets and volumes. Automated snapshot management with filtering and cleanup operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Image Management (6 tools)</h3>
+                    <p>Custom image operations including transfers, conversions, and metadata updates. Seamless image lifecycle management across regions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Floating IP Management (6 tools)</h3>
+                    <p>Static IP allocation, assignment, and management. Dynamic IP assignment with automated failover and load balancing capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Load Balancer Operations (9 tools)</h3>
+                    <p>Traffic distribution with full CRUD operations. Advanced forwarding rules, droplet pool management, and health monitoring.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☸️</div>
+                    <h3>Kubernetes Integration (4 tools)</h3>
+                    <p>Comprehensive cluster and node pool management. Deploy, scale, and monitor containerized applications with AI-driven insights.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📦</div>
-                    <h3>Container Registry</h3>
-                    <p>Access and manage your DigitalOcean container registries. Pull images, manage repositories, and integrate with your CI/CD pipelines.</p>
+                    <h3>Container Registry (2 tools)</h3>
+                    <p>Access and manage DigitalOcean container registries. Pull images, manage repositories, and integrate with CI/CD pipelines.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔐</div>
                     <h3>Secure Authentication</h3>
                     <p>OAuth2-based authentication with DigitalOcean API. Secure token management and encrypted communication channels for all operations.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>MCP Protocol</h3>
-                    <p>Built on the Model Context Protocol standard for AI agent integration. Enables seamless communication between AI models and cloud infrastructure.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Real-time Operations</h3>
-                    <p>Fast, real-time cloud operations with standardized JSON responses. Built with Go for high performance and low latency.</p>
-                </div>
             </div>
         </section>
 
         <section id="tools" class="section">
             <div class="tools-section">
-                <h2>🛠️ Available MCP Tools</h2>
+                <h2>🛠️ All 37 MCP Tools</h2>
                 <div class="tools-grid">
+                    <!-- Connection & Testing -->
                     <div class="tool-item">
                         <h4>test_connection</h4>
                         <p>Verify connectivity to DigitalOcean API</p>
                     </div>
+                    
+                    <!-- Droplet Management (7 tools) -->
                     <div class="tool-item">
                         <h4>list_droplets</h4>
-                        <p>Retrieve all droplets in your account</p>
+                        <p>Retrieve all droplets with pagination</p>
                     </div>
                     <div class="tool-item">
                         <h4>get_droplet</h4>
-                        <p>Get detailed information about a specific droplet</p>
+                        <p>Get detailed droplet information</p>
                     </div>
                     <div class="tool-item">
                         <h4>create_droplet</h4>
-                        <p>Create new droplets with custom configurations</p>
+                        <p>Create new droplets with custom specs</p>
                     </div>
                     <div class="tool-item">
                         <h4>delete_droplet</h4>
-                        <p>Safely remove droplets from your infrastructure</p>
+                        <p>Safely remove droplets</p>
                     </div>
+                    <div class="tool-item">
+                        <h4>resize_droplet</h4>
+                        <p>Scale droplet resources up/down</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>create_droplet_snapshot</h4>
+                        <p>Create backup snapshots of droplets</p>
+                    </div>
+                    
+                    <!-- Volume Management (8 tools) -->
+                    <div class="tool-item">
+                        <h4>list_volumes</h4>
+                        <p>List all block storage volumes</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>get_volume</h4>
+                        <p>Get detailed volume information</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>create_volume</h4>
+                        <p>Create new block storage volumes</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>delete_volume</h4>
+                        <p>Remove unused volumes</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>attach_volume</h4>
+                        <p>Attach volumes to droplets</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>detach_volume</h4>
+                        <p>Detach volumes from droplets</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>resize_volume</h4>
+                        <p>Expand volume storage capacity</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>create_volume_snapshot</h4>
+                        <p>Create volume backup snapshots</p>
+                    </div>
+                    
+                    <!-- Snapshot Operations (6 tools) -->
+                    <div class="tool-item">
+                        <h4>list_snapshots</h4>
+                        <p>List all snapshots with filtering</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>list_volume_snapshots</h4>
+                        <p>List volume-specific snapshots</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>list_droplet_snapshots</h4>
+                        <p>List droplet-specific snapshots</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>get_snapshot</h4>
+                        <p>Get detailed snapshot information</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>delete_snapshot</h4>
+                        <p>Remove old snapshots</p>
+                    </div>
+                    
+                    <!-- Image Management (6 tools) -->
+                    <div class="tool-item">
+                        <h4>list_images</h4>
+                        <p>List all available images</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>get_image</h4>
+                        <p>Get image details by ID or slug</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>update_image</h4>
+                        <p>Update image metadata</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>delete_image</h4>
+                        <p>Remove custom images</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>transfer_image</h4>
+                        <p>Transfer images between regions</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>convert_image_to_snapshot</h4>
+                        <p>Convert images to snapshots</p>
+                    </div>
+                    
+                    <!-- Floating IP Management (6 tools) -->
+                    <div class="tool-item">
+                        <h4>list_floating_ips</h4>
+                        <p>List all floating IP addresses</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>get_floating_ip</h4>
+                        <p>Get floating IP details</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>create_floating_ip</h4>
+                        <p>Create new floating IPs</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>delete_floating_ip</h4>
+                        <p>Release floating IPs</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>assign_floating_ip</h4>
+                        <p>Assign IPs to droplets</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>unassign_floating_ip</h4>
+                        <p>Unassign IPs from droplets</p>
+                    </div>
+                    
+                    <!-- Load Balancer Operations (9 tools) -->
+                    <div class="tool-item">
+                        <h4>list_load_balancers</h4>
+                        <p>List all load balancers</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>get_load_balancer</h4>
+                        <p>Get load balancer configuration</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>create_load_balancer</h4>
+                        <p>Create new load balancers</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>update_load_balancer</h4>
+                        <p>Update load balancer settings</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>delete_load_balancer</h4>
+                        <p>Remove load balancers</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>add_droplets_to_load_balancer</h4>
+                        <p>Add droplets to load balancer pool</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>remove_droplets_from_load_balancer</h4>
+                        <p>Remove droplets from pool</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>add_forwarding_rules_to_load_balancer</h4>
+                        <p>Add traffic forwarding rules</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>remove_forwarding_rules_from_load_balancer</h4>
+                        <p>Remove forwarding rules</p>
+                    </div>
+                    
+                    <!-- Kubernetes Integration (4 tools) -->
                     <div class="tool-item">
                         <h4>list_k8s_clusters</h4>
                         <p>List all Kubernetes clusters</p>
@@ -710,13 +884,15 @@
                         <h4>delete_k8s_cluster</h4>
                         <p>Remove Kubernetes clusters</p>
                     </div>
+                    
+                    <!-- Container Registry (2 tools) -->
                     <div class="tool-item">
                         <h4>list_registries</h4>
                         <p>List container registries</p>
                     </div>
                     <div class="tool-item">
                         <h4>get_registry</h4>
-                        <p>Get registry details and configurations</p>
+                        <p>Get registry details and configs</p>
                     </div>
                 </div>
             </div>
@@ -755,7 +931,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>🖥️ server/</h3>
-                    <p>MCP server configuration and tool registration. Contains server.go for initialization and tools.go for registering all 11 API tools.</p>
+                    <p>MCP server configuration and tool registration. Contains server.go for initialization and tools.go for registering all 37 API tools across 6 service categories.</p>
                 </div>
                 <div class="feature-card">
                     <h3>🔌 client/</h3>
@@ -763,7 +939,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>⚡ handlers/</h3>
-                    <p>Business logic for each MCP tool including droplets, Kubernetes, and registry operations with standardized error handling.</p>
+                    <p>Modular business logic with 8 specialized handler files: droplets, volumes, snapshots, images, floating IPs, load balancers, Kubernetes, and registry operations.</p>
                 </div>
             </div>
         </section>
