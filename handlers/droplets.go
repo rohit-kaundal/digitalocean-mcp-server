@@ -31,9 +31,19 @@ func (h *Handler) ListDroplets(page, perPage int) (*mcp_golang.ToolResponse, err
 		return h.HandleError(err, "list_droplets")
 	}
 
+	// Transform droplets to only include ID, Name, and Status
+	simplifiedDroplets := make([]map[string]interface{}, len(droplets))
+	for i, droplet := range droplets {
+		simplifiedDroplets[i] = map[string]interface{}{
+			"id":     droplet.ID,
+			"name":   droplet.Name,
+			"status": droplet.Status,
+		}
+	}
+
 	// Include pagination metadata in response
 	result := map[string]interface{}{
-		"droplets": droplets,
+		"droplets": simplifiedDroplets,
 		"meta": map[string]interface{}{
 			"total":    response.Meta.Total,
 			"page":     page,
