@@ -374,6 +374,8 @@
             border-left: 4px solid #00ffff;
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 255, 255, 0.1);
+            overflow: hidden;
+            min-width: 0;
         }
 
         .tool-item:hover {
@@ -388,6 +390,10 @@
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
             font-weight: 600;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.3;
         }
 
         .tool-item p {
