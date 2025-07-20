@@ -1,6 +1,6 @@
 # DigitalOcean MCP Server
 
-A comprehensive Model Context Protocol (MCP) server that provides programmatic access to DigitalOcean's API. This server exposes **37 tools** across **6 major service categories** for complete infrastructure management through the MCP interface.
+A comprehensive Model Context Protocol (MCP) server that provides programmatic access to DigitalOcean's API. This server exposes **48 tools** across **7 major service categories** for complete infrastructure management through the MCP interface.
 
 ## Features
 
@@ -10,6 +10,7 @@ A comprehensive Model Context Protocol (MCP) server that provides programmatic a
 - **🖼️ Image Management**: Custom image operations, transfers, and conversions
 - **🌐 Floating IP Management**: Static IP allocation, assignment, and management
 - **⚖️ Load Balancer Operations**: Traffic distribution with full CRUD operations
+- **🔥 Firewall Management**: Complete network security with rule and policy management
 - **☸️ Kubernetes Operations**: Comprehensive cluster and node pool management
 - **📦 Container Registry**: Access and manage DigitalOcean container registries
 - **✅ Connection Testing**: Verify API connectivity and authentication
@@ -80,7 +81,7 @@ go run main.go
 
 The server will start and listen for MCP requests via stdio transport.
 
-### Available Tools (37 Total)
+### Available Tools (48 Total)
 
 #### Connection & Testing
 - **`test_connection`** - Test API connectivity and authentication
@@ -136,6 +137,19 @@ The server will start and listen for MCP requests via stdio transport.
 - **`remove_droplets_from_load_balancer`** - Remove droplets from pool
 - **`add_forwarding_rules_to_load_balancer`** - Add traffic forwarding rules
 - **`remove_forwarding_rules_from_load_balancer`** - Remove forwarding rules
+
+#### Firewall Management (11 tools)
+- **`list_firewalls`** - List all firewalls in the account
+- **`get_firewall`** - Get detailed firewall configuration and rules
+- **`create_firewall`** - Create new firewall with inbound/outbound rules
+- **`update_firewall`** - Update firewall configuration and rules
+- **`delete_firewall`** - Remove firewall from account
+- **`add_droplets_to_firewall`** - Assign droplets to firewall protection
+- **`remove_droplets_from_firewall`** - Remove droplets from firewall
+- **`add_tags_to_firewall`** - Add tags to firewall for organization
+- **`remove_tags_from_firewall`** - Remove tags from firewall
+- **`add_rules_to_firewall`** - Add new security rules to firewall
+- **`remove_rules_from_firewall`** - Remove existing security rules
 
 #### Kubernetes Clusters (4 tools)
 - **`list_k8s_clusters`** - List all Kubernetes clusters
@@ -257,6 +271,58 @@ The server will start and listen for MCP requests via stdio transport.
 }
 ```
 
+#### Firewall Configuration
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "create_firewall",
+    "arguments": {
+      "name": "web-firewall",
+      "inbound_rules": [
+        {
+          "protocol": "tcp",
+          "ports": "80",
+          "sources": {
+            "addresses": ["0.0.0.0/0"]
+          }
+        },
+        {
+          "protocol": "tcp",
+          "ports": "443",
+          "sources": {
+            "addresses": ["0.0.0.0/0"]
+          }
+        }
+      ],
+      "outbound_rules": [
+        {
+          "protocol": "tcp",
+          "ports": "all",
+          "destinations": {
+            "addresses": ["0.0.0.0/0"]
+          }
+        }
+      ],
+      "droplet_ids": [123, 456]
+    }
+  }
+}
+```
+
+```json
+{
+  "method": "tools/call",
+  "params": {
+    "name": "add_droplets_to_firewall",
+    "arguments": {
+      "firewall_id": "firewall-123",
+      "droplet_ids": [789, 101112]
+    }
+  }
+}
+```
+
 ## Development
 
 ### Project Structure
@@ -277,6 +343,7 @@ digitalocean-mcp-server/
 │   ├── images.go          # Image operations
 │   ├── floating_ips.go    # Floating IP operations
 │   ├── load_balancers.go  # Load balancer operations
+│   ├── firewalls.go       # Firewall operations
 │   ├── kubernetes.go      # Kubernetes operations
 │   └── registry.go        # Registry operations
 ├── types/
@@ -342,6 +409,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Review [MCP Protocol Specification](https://modelcontextprotocol.io/docs)
 
 ## Changelog
+
+### v2.0.1
+- **Firewall Management**: Added comprehensive network security with 11 firewall tools
+- **Security Rules**: Complete inbound/outbound rule management and configuration
+- **Droplet Protection**: Assign and manage firewall protection for droplets
+- **Tag Management**: Organize firewalls with tag-based categorization
+- **Rule Modification**: Dynamic addition and removal of security rules
+- **Enhanced Documentation**: Updated with firewall management examples
 
 ### v2.0.0
 - **MAJOR EXPANSION**: Added 30+ new API tools across 5 additional service categories
