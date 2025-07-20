@@ -632,7 +632,7 @@
         <section id="home" class="hero">
             <div class="hero-content">
                 <h1 class="glow">DigitalOcean MCP Server</h1>
-                <p>Comprehensive AI-powered Model Context Protocol server with 37 tools across 6 service categories. Complete DigitalOcean infrastructure management through intelligent automation.</p>
+                <p>Comprehensive AI-powered Model Context Protocol server with 48 tools across 7 service categories. Complete DigitalOcean infrastructure management through intelligent automation.</p>
                 <div class="cta-buttons">
                     <a href="#setup" class="cta-button pulse">Get Started</a>
                     <a href="https://github.com/rohit-kaundal/digitalocean-mcp-server" class="cta-button-secondary" target="_blank" rel="noopener noreferrer">View on GitHub</a>
@@ -641,7 +641,7 @@
         </section>
 
         <section id="features" class="section">
-            <h2>🚀 Comprehensive Cloud Management (37 Tools)</h2>
+            <h2>🚀 Comprehensive Cloud Management (48 Tools)</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🖥️</div>
@@ -674,6 +674,11 @@
                     <p>Traffic distribution with full CRUD operations. Advanced forwarding rules, droplet pool management, and health monitoring.</p>
                 </div>
                 <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Firewall Management (11 tools)</h3>
+                    <p>Complete network security with rule and policy management. Inbound/outbound rule configuration, droplet assignment, and tag-based organization.</p>
+                </div>
+                <div class="feature-card">
                     <div class="feature-icon">☸️</div>
                     <h3>Kubernetes Integration (4 tools)</h3>
                     <p>Comprehensive cluster and node pool management. Deploy, scale, and monitor containerized applications with AI-driven insights.</p>
@@ -693,7 +698,7 @@
 
         <section id="tools" class="section">
             <div class="tools-section">
-                <h2>🛠️ All 37 MCP Tools</h2>
+                <h2>🛠️ All 48 MCP Tools</h2>
                 <div class="tools-grid">
                     <!-- Connection & Testing -->
                     <div class="tool-item">
@@ -873,6 +878,52 @@
                         <p>Remove forwarding rules</p>
                     </div>
                     
+                    <!-- Firewall Management (11 tools) -->
+                    <div class="tool-item">
+                        <h4>list_firewalls</h4>
+                        <p>List all firewalls in account</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>get_firewall</h4>
+                        <p>Get firewall configuration and rules</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>create_firewall</h4>
+                        <p>Create new firewall with rules</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>update_firewall</h4>
+                        <p>Update firewall configuration</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>delete_firewall</h4>
+                        <p>Remove firewall from account</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>add_droplets_to_firewall</h4>
+                        <p>Assign droplets to firewall</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>remove_droplets_from_firewall</h4>
+                        <p>Remove droplets from firewall</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>add_tags_to_firewall</h4>
+                        <p>Add organizational tags</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>remove_tags_from_firewall</h4>
+                        <p>Remove tags from firewall</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>add_rules_to_firewall</h4>
+                        <p>Add new security rules</p>
+                    </div>
+                    <div class="tool-item">
+                        <h4>remove_rules_from_firewall</h4>
+                        <p>Remove existing security rules</p>
+                    </div>
+                    
                     <!-- Kubernetes Integration (4 tools) -->
                     <div class="tool-item">
                         <h4>list_k8s_clusters</h4>
@@ -945,7 +996,7 @@
                 </div>
                 <div class="feature-card">
                     <h3>⚡ handlers/</h3>
-                    <p>Modular business logic with 8 specialized handler files: droplets, volumes, snapshots, images, floating IPs, load balancers, Kubernetes, and registry operations.</p>
+                    <p>Modular business logic with 9 specialized handler files: droplets, volumes, snapshots, images, floating IPs, load balancers, firewalls, Kubernetes, and registry operations.</p>
                 </div>
             </div>
         </section>
