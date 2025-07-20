@@ -206,3 +206,59 @@ type RemoveForwardingRulesFromLoadBalancerArgs struct {
 	LoadBalancerID  string                `json:"load_balancer_id" jsonschema:"description=ID of the load balancer"`
 	ForwardingRules []godo.ForwardingRule `json:"forwarding_rules" jsonschema:"description=Forwarding rules to remove"`
 }
+
+// Firewall-related args
+type GetFirewallArgs struct {
+	FirewallID string `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+}
+
+type CreateFirewallArgs struct {
+	Name         string                 `json:"name" jsonschema:"description=Name of the firewall"`
+	InboundRules []godo.InboundRule     `json:"inbound_rules" jsonschema:"description=Inbound rules configuration"`
+	OutboundRules []godo.OutboundRule   `json:"outbound_rules" jsonschema:"description=Outbound rules configuration"`
+	DropletIDs   []int                  `json:"droplet_ids,omitempty" jsonschema:"description=Droplet IDs to assign (optional)"`
+	Tags         []string               `json:"tags,omitempty" jsonschema:"description=Tags to assign (optional)"`
+}
+
+type UpdateFirewallArgs struct {
+	FirewallID    string                 `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	Name          string                 `json:"name" jsonschema:"description=Name of the firewall"`
+	InboundRules  []godo.InboundRule     `json:"inbound_rules" jsonschema:"description=Inbound rules configuration"`
+	OutboundRules []godo.OutboundRule    `json:"outbound_rules" jsonschema:"description=Outbound rules configuration"`
+}
+
+type DeleteFirewallArgs struct {
+	FirewallID string `json:"firewall_id" jsonschema:"description=ID of the firewall to delete"`
+}
+
+type AddDropletsToFirewallArgs struct {
+	FirewallID string `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	DropletIDs []int  `json:"droplet_ids" jsonschema:"description=Droplet IDs to add"`
+}
+
+type RemoveDropletsFromFirewallArgs struct {
+	FirewallID string `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	DropletIDs []int  `json:"droplet_ids" jsonschema:"description=Droplet IDs to remove"`
+}
+
+type AddTagsToFirewallArgs struct {
+	FirewallID string   `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	Tags       []string `json:"tags" jsonschema:"description=Tags to add"`
+}
+
+type RemoveTagsFromFirewallArgs struct {
+	FirewallID string   `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	Tags       []string `json:"tags" jsonschema:"description=Tags to remove"`
+}
+
+type AddRulesToFirewallArgs struct {
+	FirewallID    string              `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	InboundRules  []godo.InboundRule  `json:"inbound_rules,omitempty" jsonschema:"description=Inbound rules to add (optional)"`
+	OutboundRules []godo.OutboundRule `json:"outbound_rules,omitempty" jsonschema:"description=Outbound rules to add (optional)"`
+}
+
+type RemoveRulesFromFirewallArgs struct {
+	FirewallID    string              `json:"firewall_id" jsonschema:"description=ID of the firewall"`
+	InboundRules  []godo.InboundRule  `json:"inbound_rules,omitempty" jsonschema:"description=Inbound rules to remove (optional)"`
+	OutboundRules []godo.OutboundRule `json:"outbound_rules,omitempty" jsonschema:"description=Outbound rules to remove (optional)"`
+}

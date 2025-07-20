@@ -317,6 +317,85 @@ func RegisterTools(server *mcp_golang.Server, handler *handlers.Handler) error {
 			},
 		},
 		
+		// Firewall tools
+		{
+			Name:        "list_firewalls",
+			Description: "List all firewalls",
+			Handler: func(arguments types.EmptyArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.ListFirewalls()
+			},
+		},
+		{
+			Name:        "get_firewall",
+			Description: "Get details of a specific firewall",
+			Handler: func(arguments types.GetFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.GetFirewall(arguments.FirewallID)
+			},
+		},
+		{
+			Name:        "create_firewall",
+			Description: "Create a new firewall",
+			Handler: func(arguments types.CreateFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.CreateFirewall(arguments.Name, arguments.InboundRules, arguments.OutboundRules, arguments.DropletIDs, arguments.Tags)
+			},
+		},
+		{
+			Name:        "update_firewall",
+			Description: "Update a firewall",
+			Handler: func(arguments types.UpdateFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.UpdateFirewall(arguments.FirewallID, arguments.Name, arguments.InboundRules, arguments.OutboundRules)
+			},
+		},
+		{
+			Name:        "delete_firewall",
+			Description: "Delete a firewall",
+			Handler: func(arguments types.DeleteFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.DeleteFirewall(arguments.FirewallID)
+			},
+		},
+		{
+			Name:        "add_droplets_to_firewall",
+			Description: "Add droplets to a firewall",
+			Handler: func(arguments types.AddDropletsToFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.AddDropletsToFirewall(arguments.FirewallID, arguments.DropletIDs)
+			},
+		},
+		{
+			Name:        "remove_droplets_from_firewall",
+			Description: "Remove droplets from a firewall",
+			Handler: func(arguments types.RemoveDropletsFromFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.RemoveDropletsFromFirewall(arguments.FirewallID, arguments.DropletIDs)
+			},
+		},
+		{
+			Name:        "add_tags_to_firewall",
+			Description: "Add tags to a firewall",
+			Handler: func(arguments types.AddTagsToFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.AddTagsToFirewall(arguments.FirewallID, arguments.Tags)
+			},
+		},
+		{
+			Name:        "remove_tags_from_firewall",
+			Description: "Remove tags from a firewall",
+			Handler: func(arguments types.RemoveTagsFromFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.RemoveTagsFromFirewall(arguments.FirewallID, arguments.Tags)
+			},
+		},
+		{
+			Name:        "add_rules_to_firewall",
+			Description: "Add rules to a firewall",
+			Handler: func(arguments types.AddRulesToFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.AddRulesToFirewall(arguments.FirewallID, arguments.InboundRules, arguments.OutboundRules)
+			},
+		},
+		{
+			Name:        "remove_rules_from_firewall",
+			Description: "Remove rules from a firewall",
+			Handler: func(arguments types.RemoveRulesFromFirewallArgs) (*mcp_golang.ToolResponse, error) {
+				return handler.RemoveRulesFromFirewall(arguments.FirewallID, arguments.InboundRules, arguments.OutboundRules)
+			},
+		},
+		
 		// Registry tools
 		{
 			Name:        "list_registries",
